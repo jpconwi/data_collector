@@ -2,155 +2,215 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Campus Room Records</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nemsai Room Collector</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f5c4a'/%3E%3Cpath d='M12 26 32 12l20 14z' fill='%23f2b632'/%3E%3Crect x='16' y='28' width='32' height='24' fill='%23fff'/%3E%3Crect x='21' y='33' width='7' height='7' fill='%230f5c4a'/%3E%3Crect x='36' y='33' width='7' height='7' fill='%230f5c4a'/%3E%3Crect x='28' y='43' width='8' height='9' fill='%23f2b632'/%3E%3C/svg%3E">
 <style>
-:root{--ink:#1b2733;--muted:#5d6b78;--line:#d5dde5;--bg:#f3f6f9;--card:#fff;--brand:#1f4e78;--brand2:#173a5a;--danger:#b42318}
+:root{--green:#0f5c4a;--green2:#0a4336;--gold:#f2b632;--ink:#17262b;--muted:#5b6b70;--line:#dbe4e1;--bg:#eef3f1;--card:#fff;--danger:#b42318}
 *{box-sizing:border-box}
-body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:var(--bg);line-height:1.5}
-h1,h2,label,button,th,input,select,textarea,.sub{font-family:"Segoe UI",Arial,sans-serif}
-header{background:var(--brand);color:#fff;padding:28px 20px}
-header div,main{max-width:1100px;margin:0 auto}
-h1{margin:0;font-size:1.7rem;font-weight:700}
-.sub{margin:4px 0 0;opacity:.85;font-size:.95rem}
-main{padding:20px}
-section{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin-bottom:20px}
-h2{margin:0 0 14px;font-size:1.15rem}
-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+form>div{min-width:0}
+header{background:linear-gradient(135deg,var(--green),var(--green2));color:#fff;padding:22px 16px 56px;padding-top:max(22px,env(safe-area-inset-top))}
+.in{max-width:1040px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:54px;height:54px;flex:none}
+h1{margin:0;font-size:1.6rem;line-height:1.15}
+.sub{margin:3px 0 0;opacity:.85;font-size:.92rem}
+main{max-width:1040px;margin:-36px auto 0;padding:0 16px 32px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.stat{background:var(--card);border-radius:10px;padding:12px 14px;box-shadow:0 2px 8px rgba(15,60,50,.12);border-bottom:3px solid var(--gold)}
+.stat b{display:block;font-size:1.5rem;color:var(--green);line-height:1.1}
+.stat span{font-size:.8rem;color:var(--muted)}
+section{background:var(--card);border-radius:10px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,60,50,.08)}
+h2{margin:0 0 14px;font-size:1.1rem;color:var(--green)}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
 .full{grid-column:1/-1}
-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:4px}
-input,select,textarea{width:100%;padding:9px 10px;border:1px solid #aebbc7;border-radius:4px;font-size:.95rem;background:#fff;color:var(--ink)}
-textarea{min-height:64px;resize:vertical}
-:focus-visible{outline:3px solid #7fb2e0;outline-offset:1px}
-button{padding:10px 18px;border:0;border-radius:4px;font-size:.95rem;font-weight:600;cursor:pointer;background:var(--brand);color:#fff}
-button:hover{background:var(--brand2)}
-button.alt{background:#fff;color:var(--brand);border:1px solid var(--brand)}
-button.alt:hover{background:#eaf1f8}
-button.del{background:none;color:var(--danger);padding:4px 8px;font-weight:600}
+label{display:block;font-size:.82rem;font-weight:600;margin-bottom:5px}
+input,select,textarea{width:100%;padding:10px 11px;border:1px solid #b9c8c4;border-radius:8px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+textarea{min-height:70px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid #8fd1bd;outline-offset:1px;border-color:var(--green)}
+button{padding:10px 16px;border:0;border-radius:8px;font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;background:var(--green);color:#fff;min-height:44px}
+button:hover{background:var(--green2)}
+button.gold{background:var(--gold);color:#3a2a00}
+button.gold:hover{background:#e0a41d}
+button.alt{background:#fff;color:var(--green);border:1px solid var(--green)}
+button.alt:hover{background:#e8f3ef}
+button.danger{background:#fff;color:var(--danger);border:1px solid #e3b4af}
+button.danger:hover{background:#fdecea}
+button.del{background:none;color:var(--danger);padding:4px 10px;min-height:0;font-size:.85rem}
 button.del:hover{background:#fdecea}
-.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
-.bar .grp{display:flex;gap:10px;flex-wrap:wrap}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.tools .search{flex:1 1 220px}
+.tools .grp{display:flex;gap:8px;flex-wrap:wrap}
+.count{font-size:.85rem;color:var(--muted);font-weight:400}
 .wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:.9rem}
-th{background:var(--brand);color:#fff;text-align:left;padding:9px 10px;white-space:nowrap}
-td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#e4efeb;color:var(--green2);text-align:left;padding:10px;white-space:nowrap;font-size:.82rem}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:hover td{background:#f6faf8}
 td.c{text-align:center}
-.empty{text-align:center;color:var(--muted);padding:26px 10px}
-.count{color:var(--muted);font-family:"Segoe UI",Arial,sans-serif;font-size:.9rem}
-@media print{header,form,.bar,.del,.noprint{display:none}body{background:#fff}section{border:0;padding:0}}
+.tag{display:inline-block;padding:2px 9px;border-radius:99px;background:#e4efeb;color:var(--green2);font-size:.78rem;font-weight:600;white-space:nowrap}
+.empty{text-align:center;color:var(--muted);padding:28px 10px}
+footer{text-align:center;color:var(--muted);font-size:.8rem;padding-bottom:20px}
+@media (max-width:600px){
+header{padding-bottom:50px}h1{font-size:1.3rem}.logo{width:46px;height:46px}
+main{padding:0 12px 24px}section{padding:14px}
+.stats{gap:8px}.stat{padding:10px}.stat b{font-size:1.25rem}
+form{grid-template-columns:1fr}
+.tools .grp{width:100%}.tools .grp button{flex:1 1 auto}
+.wrap{overflow:visible}
+table,tbody,tr,td{display:block;width:100%}
+thead{display:none}
+tr{border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:8px;margin-bottom:10px;padding:6px 10px;background:#fbfdfc}
+td{display:flex;gap:10px;justify-content:space-between;border:0;border-bottom:1px solid #edf2f0;padding:6px 0;text-align:right;overflow-wrap:anywhere}
+td::before{content:attr(data-l);font-weight:600;color:var(--muted);text-align:left;flex:0 0 36%}
+td.c{text-align:right}
+td.act{border:0;justify-content:flex-end}td.act::before{content:none}
+td.empty{display:block;text-align:center}td.empty::before{content:none}
+}
+@media print{header,form,.tools,.del,.stats{display:none}body{background:#fff}section{box-shadow:none}}
 </style>
 </head>
 <body>
-<header><div>
-  <h1>Campus Room Records</h1>
-  <p class="sub">Add rooms by building and floor, then save the list as a PDF.</p>
+<header><div class="in">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 64 64" role="img" aria-label="Nemsai Room Collector logo">
+      <rect width="64" height="64" rx="14" fill="#fff"/>
+      <path d="M10 26 32 11l22 15z" fill="#f2b632"/>
+      <rect x="15" y="28" width="34" height="26" fill="#0f5c4a"/>
+      <rect x="20" y="33" width="8" height="7" fill="#fff"/>
+      <rect x="36" y="33" width="8" height="7" fill="#fff"/>
+      <rect x="28" y="43" width="8" height="11" fill="#f2b632"/>
+    </svg>
+    <div>
+      <h1>Nemsai Room Collector</h1>
+      <p class="sub">Collect campus rooms. Save to Excel or PDF.</p>
+    </div>
+  </div>
 </div></header>
 
 <main>
-<section>
-  <h2>Add a record</h2>
-  <form id="f">
-    <div><label for="building">Building</label>
-      <input id="building" list="blds" required placeholder="e.g. ICT Building">
-      <datalist id="blds"></datalist></div>
-    <div><label for="floor">Floor</label>
-      <select id="floor"><option>1st Floor</option><option>2nd Floor</option><option>3rd Floor</option><option>4th Floor</option><option>Not specified</option></select></div>
-    <div><label for="room">Room / Area</label>
-      <input id="room" required placeholder="e.g. Room 201"></div>
-    <div><label for="type">Room Type</label>
-      <select id="type"><option>Classroom</option><option>Computer Laboratory</option><option>Office</option><option>Faculty Office</option><option>Server Room</option><option>Restroom</option><option>Library</option><option>Moot Court</option><option>Service Center</option><option>Other</option></select></div>
-    <div><label for="cap">Room Capacity</label>
-      <input id="cap" type="number" min="0" placeholder="Leave blank for N/A"></div>
-    <div class="full"><label for="equip">Equipment</label>
-      <textarea id="equip" placeholder="e.g. Whiteboard, projector, electric fans"></textarea></div>
-    <div class="full"><button type="submit">Add record</button></div>
-  </form>
-</section>
+  <div class="stats">
+    <div class="stat"><b id="sRooms">0</b><span>Rooms</span></div>
+    <div class="stat"><b id="sBlds">0</b><span>Buildings</span></div>
+    <div class="stat"><b id="sCap">0</b><span>Total capacity</span></div>
+  </div>
 
-<section>
-  <div class="bar">
-    <h2 style="margin:0">Records <span class="count" id="count"></span></h2>
-    <div class="grp noprint">
-      <button class="alt" id="clear" type="button">Clear all</button>
-      <button id="pdf" type="button">Save as PDF</button>
+  <section>
+    <h2>Add a room</h2>
+    <form id="f">
+      <div><label for="building">Building</label>
+        <input id="building" list="blds" required placeholder="e.g. ICT Building" autocomplete="off">
+        <datalist id="blds"></datalist></div>
+      <div><label for="floor">Floor</label>
+        <select id="floor"><option>1st Floor</option><option>2nd Floor</option><option>3rd Floor</option><option>4th Floor</option><option>Not specified</option></select></div>
+      <div><label for="room">Room / Area</label>
+        <input id="room" required placeholder="e.g. Room 201" autocomplete="off"></div>
+      <div><label for="type">Room Type</label>
+        <select id="type"><option>Classroom</option><option>Computer Laboratory</option><option>Office</option><option>Faculty Office</option><option>Server Room</option><option>Restroom</option><option>Library</option><option>Moot Court</option><option>Service Center</option><option>Other</option></select></div>
+      <div><label for="cap">Room Capacity</label>
+        <input id="cap" type="number" inputmode="numeric" min="0" placeholder="Leave blank for N/A"></div>
+      <div class="full"><label for="equip">Equipment</label>
+        <textarea id="equip" placeholder="e.g. Whiteboard, projector, electric fans"></textarea></div>
+      <div class="full"><button class="gold" type="submit">Add room</button></div>
+    </form>
+  </section>
+
+  <section>
+    <h2>Records <span class="count" id="count"></span></h2>
+    <div class="tools">
+      <input class="search" id="q" type="search" placeholder="Search building, room, type..." aria-label="Search records">
+      <div class="grp">
+        <button id="xlsx" type="button">Save as Excel</button>
+        <button class="alt" id="pdf" type="button">Save as PDF</button>
+        <button class="danger" id="clear" type="button">Clear all</button>
+      </div>
     </div>
-  </div>
-  <div class="wrap">
-    <table>
-      <thead><tr><th>Building</th><th>Floor</th><th>Room / Area</th><th>Room Type</th><th>Capacity</th><th>Equipment</th><th></th></tr></thead>
-      <tbody id="rows"></tbody>
-    </table>
-  </div>
-</section>
+    <div class="wrap">
+      <table>
+        <thead><tr><th>Building</th><th>Floor</th><th>Room / Area</th><th>Room Type</th><th>Capacity</th><th>Equipment</th><th></th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+  <footer>Records are saved on this device. Save as Excel or PDF to keep a copy.</footer>
 </main>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <script>
-var KEY="campusRoomRecords", data=[];
+var KEY="nemsaiRoomCollector", data=[];
 try{data=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){data=[]}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(data))}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function $(id){return document.getElementById(id)}
 
 function render(){
-  var tb=document.getElementById("rows");
-  if(!data.length){
-    tb.innerHTML='<tr><td colspan="7" class="empty">No records yet. Fill in the form above and select Add record.</td></tr>';
-  }else{
-    tb.innerHTML=data.map(function(r,i){
-      return "<tr><td>"+esc(r.building)+"</td><td>"+esc(r.floor)+"</td><td>"+esc(r.room)+"</td><td>"+esc(r.type)+
-        '</td><td class="c">'+esc(r.cap)+"</td><td>"+esc(r.equip||"-")+
-        '</td><td><button class="del" data-i="'+i+'" aria-label="Delete '+esc(r.room)+'">Delete</button></td></tr>';
-    }).join("");
+  var q=$("q").value.trim().toLowerCase(), html="", shown=0;
+  data.forEach(function(r,i){
+    var hay=(r.building+" "+r.floor+" "+r.room+" "+r.type+" "+r.equip).toLowerCase();
+    if(q&&hay.indexOf(q)<0)return;
+    shown++;
+    html+='<tr><td data-l="Building">'+esc(r.building)+'</td><td data-l="Floor">'+esc(r.floor)+
+      '</td><td data-l="Room / Area"><b>'+esc(r.room)+'</b></td><td data-l="Room Type"><span class="tag">'+esc(r.type)+
+      '</span></td><td data-l="Capacity" class="c">'+esc(r.cap)+'</td><td data-l="Equipment">'+esc(r.equip||"-")+
+      '</td><td class="act"><button class="del" data-i="'+i+'" aria-label="Delete '+esc(r.room)+'">Delete</button></td></tr>';
+  });
+  if(!shown){
+    html='<tr><td colspan="7" class="empty">'+(data.length?"No records match your search.":"No rooms yet. Fill in the form above and select Add room.")+'</td></tr>';
   }
-  document.getElementById("count").textContent=data.length?"("+data.length+")":"";
-  var names=[];data.forEach(function(r){if(names.indexOf(r.building)<0)names.push(r.building)});
-  document.getElementById("blds").innerHTML=names.map(function(n){return '<option value="'+esc(n)+'">'}).join("");
+  $("rows").innerHTML=html;
+  $("count").textContent=data.length?"("+(q?shown+" of ":"")+data.length+")":"";
+  var names=[],cap=0;
+  data.forEach(function(r){if(names.indexOf(r.building)<0)names.push(r.building);var n=parseInt(r.cap,10);if(!isNaN(n))cap+=n});
+  $("sRooms").textContent=data.length;$("sBlds").textContent=names.length;$("sCap").textContent=cap;
+  $("blds").innerHTML=names.map(function(n){return '<option value="'+esc(n)+'">'}).join("");
 }
 
-document.getElementById("f").addEventListener("submit",function(e){
+$("f").addEventListener("submit",function(e){
   e.preventDefault();
-  var cap=document.getElementById("cap").value.trim();
-  data.push({
-    building:document.getElementById("building").value.trim(),
-    floor:document.getElementById("floor").value,
-    room:document.getElementById("room").value.trim(),
-    type:document.getElementById("type").value,
-    cap:cap===""?"N/A":cap,
-    equip:document.getElementById("equip").value.trim()
-  });
+  var cap=$("cap").value.trim();
+  data.push({building:$("building").value.trim(),floor:$("floor").value,room:$("room").value.trim(),
+    type:$("type").value,cap:cap===""?"N/A":cap,equip:$("equip").value.trim()});
   save();render();
-  document.getElementById("room").value="";
-  document.getElementById("cap").value="";
-  document.getElementById("equip").value="";
-  document.getElementById("room").focus();
+  $("room").value="";$("cap").value="";$("equip").value="";$("room").focus();
 });
-
-document.getElementById("rows").addEventListener("click",function(e){
+$("q").addEventListener("input",render);
+$("rows").addEventListener("click",function(e){
   var i=e.target.getAttribute("data-i");
-  if(i!==null){data.splice(+i,1);save();render();}
+  if(i!==null&&confirm("Delete this record?")){data.splice(+i,1);save();render();}
 });
-
-document.getElementById("clear").addEventListener("click",function(){
+$("clear").addEventListener("click",function(){
   if(data.length&&confirm("Delete all records? This cannot be undone.")){data=[];save();render();}
 });
 
-document.getElementById("pdf").addEventListener("click",function(){
-  if(!data.length){alert("Add at least one record before saving a PDF.");return;}
-  if(!window.jspdf){window.print();return;}
+function need(){if(!data.length){alert("Add at least one room first.");return false}return true}
+
+$("xlsx").addEventListener("click",function(){
+  if(!need())return;
+  if(!window.XLSX){alert("The Excel tool could not load. Check your internet connection and try again.");return}
+  var rows=[["Building","Floor","Room / Area","Room Type","Room Capacity","Equipment"]];
+  data.forEach(function(r){var n=Number(r.cap);rows.push([r.building,r.floor,r.room,r.type,(r.cap!=="N/A"&&!isNaN(n))?n:r.cap,r.equip])});
+  var ws=XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"]=[{wch:28},{wch:14},{wch:36},{wch:20},{wch:14},{wch:55}];
+  var wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,"Campus Data");
+  XLSX.writeFile(wb,"nemsai-room-collector.xlsx");
+});
+
+$("pdf").addEventListener("click",function(){
+  if(!need())return;
+  if(!window.jspdf){window.print();return}
   var doc=new window.jspdf.jsPDF({orientation:"landscape",unit:"pt",format:"a4"});
-  doc.setFontSize(16);doc.text("Campus Room Records",40,40);
+  doc.setFontSize(16);doc.text("Nemsai Room Collector",40,40);
   doc.setFontSize(9);doc.text("Generated "+new Date().toLocaleDateString(),40,56);
-  doc.autoTable({
-    startY:68,
+  doc.autoTable({startY:68,
     head:[["Building","Floor","Room / Area","Room Type","Capacity","Equipment"]],
     body:data.map(function(r){return [r.building,r.floor,r.room,r.type,r.cap,r.equip||"-"]}),
-    styles:{fontSize:9,cellPadding:4},
-    headStyles:{fillColor:[31,78,120]},
-    columnStyles:{4:{halign:"center"}},
-    margin:{left:40,right:40}
-  });
-  doc.save("campus-room-records.pdf");
+    styles:{fontSize:9,cellPadding:4},headStyles:{fillColor:[15,92,74]},
+    columnStyles:{4:{halign:"center"}},margin:{left:40,right:40}});
+  doc.save("nemsai-room-collector.pdf");
 });
 
 render();
